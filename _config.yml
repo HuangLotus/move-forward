@@ -22,7 +22,7 @@ title: 大小芙
 email: hfr_2011@163.com
 description: >- # this means to ignore newlines until "baseurl:"
   record the details of move forward
-baseurl: "/_site" # the subpath of your site, e.g. /blog
+# baseurl: "/_site" # the subpath of your site, e.g. /blog
 # url: "http://ejjoo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: ejjoo
 highlighter: rouge
