@@ -1,5 +1,5 @@
 ---
 layout: page
 title: 关于
-permalink: "pretty"
+permalink: "date"
 ---
