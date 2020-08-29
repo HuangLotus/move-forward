@@ -1,7 +1,6 @@
 ---
 layout: post
-title:  "成长与晋升的思考"
+title:  "todo"
 date:   2020-08-29 19:31:29 +0900
-categories: 早早聊
+categories: 
 ---
-今天听了早早聊的分享。

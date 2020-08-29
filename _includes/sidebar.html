@@ -37,6 +37,7 @@
 			<li class="nav-title">标签</li>
 	    {% for category in site.categories %}
 	    <li>
+				root_url:{{ root_url }}!
 	    	<a class="nav-item" href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}">
 				<span class="name">{{ category | first }}</span>
 				<span class="badge">{{ category | last | size }}</span>
