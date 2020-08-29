@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="大小芙" /></head>
+<style>@import url(/public/css/syntax/monokai.css);</style>
+  <title>大小芙</title>
+  <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <link href="/public/css/style.css" rel="stylesheet">
+  <body>
+  	<div class="container"> 
+		<div class="sidebar">
+			<div class="sidebar-item sidebar-header">
+	<div class='sidebar-brand'>
+		<a href="/about/">大小芙</a>
+	</div>
+	<p class="lead">record the details of move forward</p></div>
+
+<div class="sidebar-item sidebar-nav">
+	<ul class="nav">
+      <li class="nav-title">分类</li>
+	  <li>
+	  	<a class="nav-item" href="/">文章</a>
+	  </li>
+	  
+	  
+	    
+	  
+	    
+	      
+	        <li>
+	        	<a class="nav-item" href="/about/">
+	            	关于
+	            </a>
+	        </li>
+	      
+	    
+	  
+	    
+	      
+	    
+	  
+	    
+	  
+	    
+	  
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-nav">
+  	<ul class="nav">
+			<li class="nav-title">标签</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#sample">
+				<span class="name">sample</span>
+				<span class="badge">1</span>
+	    	</a>
+ 		</li>
+	    
+	  </nav>
+	</ul>
+</div>
+
+<!-- <div class="sidebar-item sidebar-footer">
+	<p>Powered by <a href="https://github.com/jekyll/jekyll">Jekyll</a></p>
+</div> -->
+		</div>
+		<div class="content">
+			<article class="post">
+	<header class="post-header home">
+		<div class="post-title">标签 - <span id='category-name'></span></div>
+	</header>
+
+	<div class="post-content"><ul class="post-list"><li class="post-list-item post-category-sample">
+				<!----><span class="post-date">2020/01/02</span>
+				<a class="post-link" href="/sample/2020/01/02/post1.html">
+					post-sample
+				</a></li></ul></div>
+</article>
+
+<script src="/public/js/jquery-3.4.1.slim.min.js"></script>
+<script>
+	function removeCategory() {
+		if (window.location.hash) {
+			let hash = window.location.hash.substring(1);
+			$('#category-name').text(hash.substring(0, 1).toUpperCase() + hash.substring(1));
+			let category_class = '.post-category-' + hash;
+			let items = $('.post-list-item').each((i, e) => {
+				if (!$(e).hasClass('post-category-' + hash)) {
+					$(e).hide();
+				} else {
+					$(e).show();
+				}
+			});
+		}
+	}
+	$(window).on('hashchange', () => {
+		removeCategory();
+	});
+	$(document).ready(() => {
+		removeCategory();	
+	})
+	
+</script>
+
+		</div>
+	</div>
+  </body>
+</html>
