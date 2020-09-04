@@ -1,0 +1,30 @@
+{
+  "name": "move-forward",
+  "version": "1.0.0",
+  "description": "lotus's blog",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vuepress": "^1.5.4"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuangLotus/move-forward.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "huangfurong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HuangLotus/move-forward/issues"
+  },
+  "homepage": "https://github.com/HuangLotus/move-forward#readme"
+}
