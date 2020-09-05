@@ -1,5 +1,5 @@
 module.exports = {
-    title: '小小芙的部落格',
+    title: '风若能够',
     description: '工作笔记',
     base: '/move-forward/',
     markdown: {
@@ -8,23 +8,55 @@ module.exports = {
     },
     evergreen: true,
     themeConfig: {
-        logo: '/public/imgs/cat.jpeg',
+        logo: '/imgs/cat.jpeg',
         nav: [
-            { text: 'Home', link: '/' },
-            { text: 'Guide', link: '/guide/' },
-            { text: '关于', link: '/about/' },
-            { text: 'github', link: 'https://github.com/HuangLotus' },
+            { text: '首页', link: '/' },
+            { text: '踩坑经验', link: '/summary/' },
+            { text: '前端基础', link: '/basement/' },
+            { text: 'github', items: [
+                {
+                    text: '踩坑issues',
+                    link: 'https://github.com/HuangLotus/move-forward/issues'
+                }
+            ] 
+            },
+            { text: '关于', link: '/about/' }
         ],
         sidebar: [
-            '/',
-            '/about',
-            ['/page-b', 'Explicit link text']
-        ]
+            {
+                title: '踩坑经验',   // 必要的
+                path: '/summary',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+                collapsable: false, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                children: [
+                    '/webpack/如何写一个loader'
+                ]
+            },
+            {
+                title: '平台架构',
+                path: '/platform',    
+                children: [
+                    '/platform/如何规划一个node平台'
+                ],
+                collapsable: false, // 可选的, 默认值是 true,
+                initialOpenGroupIndex: 1 // 可选的, 默认值是 0
+            }
+        ],
+        lastUpdated: '最后更新时间', // string | boolean
+        // repo: 'https://github.com/HuangLotus/move-forward',
+        // repoLabel: 'github',
+        docsDir: 'docs',
+        docsBranch: 'master',
+        editLinks: true,
+        editLinkText: '帮我改善此页面',
+        smoothScroll: true,
+        displayAllHeaders: true,
+        sidebarDepth: 2
     },
     configureWebpack: {
         resolve: {
           alias: {
-            '@alias': 'path/to/some/dir'
+            '@alias': 'public/imgs/'
           }
         }
     }
