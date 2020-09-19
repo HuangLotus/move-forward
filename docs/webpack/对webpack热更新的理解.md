@@ -15,7 +15,7 @@
 如果不用webpack的插件，其实也可以自己利用webSocket实现浏览器的自动刷新更新页面，思路和上面的大同小异；
 
 ### 需要刷新浏览器的自动热更新
-Node侧代码：
+#### 服务端（node.js侧）代码
 1. 创建一个服务器，并创建一个socket连接
 ```
 const http = require("http");
@@ -33,8 +33,8 @@ io.on('disconnect', (socket) => {
   refreshSocket = null;
 });
 reFreshSocketServer.listen(3000);
-2. 监听client打包文件
 ```
+2. 监听client打包文件
 ```
 chokidar.watch([
   '/xx',
@@ -44,7 +44,7 @@ chokidar.watch([
     refreshSocket.emit('reload'); // 通知客户端socket更新
 });
 ```
-3. 客户端代码
+#### 客户端代码
 ```
 import io from "socket.io-client";
 const socket = io('127.0.0.1:3000/');// 连接服务端
