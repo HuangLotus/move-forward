@@ -29,18 +29,8 @@ module.exports = {
                 collapsable: false, // 可选的, 默认值是 true,
                 sidebarDepth: 1,    // 可选的, 默认值是 1
                 children: [
-                    '/webpack/如何写一个loader'
+                    '/summary/不清楚的点梳理'
                 ]
-            },
-            {
-                title: '框架理解',
-                path: '/myframe',    
-                children: [
-                    '/myframe/test'
-                    // '/myframe/理解vue核心概念'
-                ],
-                collapsable: false, 
-                initialOpenGroupIndex: 1 
             },
             {
                 title: '平台架构',
@@ -52,10 +42,11 @@ module.exports = {
                 initialOpenGroupIndex: 1
             },
             {
-                title: 'webpack学习笔记',
-                path: '/webpack',    
+                title: '学习笔记',
+                path: '/mynote',    
                 children: [
-                    '/webpack/对webpack热更新的理解'
+                    '/mynote/对webpack热更新的理解',
+                    '/mynote/理解vue核心概念'
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 
