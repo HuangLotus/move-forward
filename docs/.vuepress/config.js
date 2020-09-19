@@ -40,7 +40,16 @@ module.exports = {
                 ],
                 collapsable: false, // 可选的, 默认值是 true,
                 initialOpenGroupIndex: 1 // 可选的, 默认值是 0
-            }
+            },
+            {
+                title: '开始的话',   // 必要的
+                path: '/first/新博客第一篇',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+                collapsable: false, // 可选的, 默认值是 true,
+                sidebarDepth: 1,    // 可选的, 默认值是 1
+                // children: [
+                //     '/webpack/如何写一个loader'
+                // ]
+            },
         ],
         lastUpdated: '最后更新时间', // string | boolean
         // repo: 'https://github.com/HuangLotus/move-forward',
