@@ -12,6 +12,7 @@ cd docs/.vuepress/dist
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
 
+# 创建一个空的git仓库或重新初始化一个现有仓库
 git init
 git add -A
 git commit -m 'deploy blog'
