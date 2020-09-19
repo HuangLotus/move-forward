@@ -27,8 +27,7 @@ cd -
 
 pwd
 # 删除编译产物
-# 使用 " 2>&1" 把标准错误 stderr 重定向到标准输出 stdout，即捕获异常
-# git rm -rf docs/.vuepress/dist 2>&1 
+rm -rf docs/.vuepress/dist
 git add .
 git ci -am "删除编译产物"
 git ps origin master
