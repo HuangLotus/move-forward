@@ -40,6 +40,15 @@ module.exports = {
                 ],
                 collapsable: false, // 可选的, 默认值是 true,
                 initialOpenGroupIndex: 1 // 可选的, 默认值是 0
+            },
+            {
+                title: 'webpack学习笔记',
+                path: '/webpack',    
+                children: [
+                    '/webpack/对webpack热更新的理解'
+                ],
+                collapsable: false, // 可选的, 默认值是 true,
+                initialOpenGroupIndex: 1 // 可选的, 默认值是 0
             }
         ],
         lastUpdated: '最后更新时间', // string | boolean
