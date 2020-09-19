@@ -36,7 +36,8 @@ module.exports = {
                 title: '框架理解',
                 path: '/myframe',    
                 children: [
-                    '/myframe/理解vue核心概念'
+                    '/myframe/test'
+                    // '/myframe/理解vue核心概念'
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 
