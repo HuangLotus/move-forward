@@ -33,13 +33,22 @@ module.exports = {
                 ]
             },
             {
+                title: '框架理解',
+                path: '/frame',    
+                children: [
+                    '/frame/vue核心概念的理解'
+                ],
+                collapsable: false, 
+                initialOpenGroupIndex: 1 
+            },
+            {
                 title: '平台架构',
                 path: '/platform',    
                 children: [
                     '/platform/如何规划一个node平台'
                 ],
-                collapsable: false, // 可选的, 默认值是 true,
-                initialOpenGroupIndex: 1 // 可选的, 默认值是 0
+                collapsable: false, 
+                initialOpenGroupIndex: 1
             },
             {
                 title: 'webpack学习笔记',
@@ -47,14 +56,14 @@ module.exports = {
                 children: [
                     '/webpack/对webpack热更新的理解'
                 ],
-                collapsable: false, // 可选的, 默认值是 true,
-                initialOpenGroupIndex: 1 // 可选的, 默认值是 0
+                collapsable: false, 
+                initialOpenGroupIndex: 1 
             },
             {
                 title: '开始的话',   // 必要的
                 path: '/first/新博客第一篇',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-                collapsable: false, // 可选的, 默认值是 true,
-                sidebarDepth: 1,    // 可选的, 默认值是 1
+                collapsable: false, 
+                sidebarDepth: 1,  
             }
         ],
         lastUpdated: '最后更新时间', // string | boolean

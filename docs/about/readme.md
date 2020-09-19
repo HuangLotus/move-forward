@@ -10,4 +10,3 @@
 
 ### 联系方式
 * mail: hfr_2011@163.com
-* wechat: 
