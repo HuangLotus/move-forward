@@ -34,9 +34,9 @@ module.exports = {
             },
             {
                 title: '框架理解',
-                path: '/framecode',    
+                path: '/myframe',    
                 children: [
-                    '/framecode/vue核心概念的理解'
+                    '/myframe/理解vue核心概念'
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 
