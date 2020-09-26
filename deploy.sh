@@ -14,7 +14,7 @@ cd docs/.vuepress/dist
 
 git init
 git add -A
-git commit -m 'deploy blog'
+git commit -m '提交改动，重新部署'
 
 # 如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名 
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
