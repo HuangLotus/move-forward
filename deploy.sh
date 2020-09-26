@@ -23,6 +23,7 @@ git commit -m '提交改动，重新部署'
 # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目
 git push -f https://github.com/HuangLotus/move-forward.git master:gh-pages
 
+echo '博客编译产物，推送成功~'
 # 回到上一级工作目录
 cd -
 
@@ -30,5 +31,5 @@ pwd
 # 删除编译产物
 rm -rf docs/.vuepress/dist
 git add .
-git ci -am "删除编译产物，并提交变更"
+git ci -am "删除编译产物，并提交变更到master"
 git ps origin master
