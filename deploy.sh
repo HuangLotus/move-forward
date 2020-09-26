@@ -12,6 +12,7 @@ cd docs/.vuepress/dist
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
 
+# 创建一个空的git仓库或重新初始化一个现有仓库
 git init
 git add -A
 git commit -m '提交改动，重新部署'
@@ -29,5 +30,5 @@ pwd
 # 删除编译产物
 rm -rf docs/.vuepress/dist
 git add .
-git ci -am "删除编译产物"
+git ci -am "删除编译产物，并提交变更"
 git ps origin master
