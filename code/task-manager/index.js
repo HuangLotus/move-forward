@@ -2,7 +2,11 @@
 function taskManager(taskList){
     let taskListCopy = taskList.slice();
     let count = 0;
-    let result = {};
+    let result = [];
+    let resolveFn;
+    let promise = new Promise((resolve, reject) => {
+        resolveFn = resolve;
+    });
     let execTask = function (p, index){
         count ++;
         p.then(data => {
@@ -11,8 +15,9 @@ function taskManager(taskList){
             if (taskList.length > 0){
                 let next = taskList.shift();
                 execTask(next, taskListCopy.findIndex(item => item === next ));
-            } else {
-                console.log('result', result);
+            }
+            if(result.length === taskListCopy.length){
+                resolveFn(result);
             }
         });
     };
@@ -22,7 +27,7 @@ function taskManager(taskList){
             taskList.shift();
         }
     }
-    return result;
+    return promise;
 }
 taskManager([new Promise((resolve, reject) => {
     setTimeout(function(){
@@ -40,4 +45,6 @@ taskManager([new Promise((resolve, reject) => {
     setTimeout(function(){
         resolve(4);
     }, 100);
-})]);
+})]).then(res => {
+    console.log('p', res)
+});
