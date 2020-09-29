@@ -48,8 +48,10 @@ module.exports = {
                 children: [
                     '/mynote/理解vue核心概念',
                     '/mynote/对webpack热更新的理解',
+                    '/mynote/懒加载是如何实现的',
                     '/summary/那些不清楚的知识点梳理',
-                    '/platform/如何规划一个node平台'
+                    '/platform/如何规划一个node平台',
+                    '/mynote/对js模块的深入理解',
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 

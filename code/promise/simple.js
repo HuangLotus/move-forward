@@ -1,93 +1,114 @@
-
 // 手写一个promise
-// 用法：
 // var promise = new Promise((resolve, reject) => {
-//     if(操作成功){
-//         resolve(value);
-//     }else {
-//         reject(error);
-//     }
+//   if(true){
+//     resolve(value);
+//   }else {
+//     reject();
+//   }
 // });
-// promise.then(function(value){
-//     // success
-// }, function(value){
-//     // error
+// promise.then(() => {
+//   console.log('succ');
+// }, () => {
+//   console.log('err');
 // });
 
-// 两个函数
 function myPromise(fn){
     let self = this;
     self.status = 'pending';
     self.value = undefined;
     self.reason = undefined;
-
-    self.onResolvedCallback = [];
-    self.onRejecteCallback = [];
+  
+    self.onResolvedCallbacks = [];
+    self.onRejectedCallbacks = [];
+  
     function resolve(value){
-        if (self.status === 'pending'){
-            self.value = value;
-            self.status = 'fulfilled';
-            self.onResolvedCallback.forEach(fn => fn(self.value));
-        }
+      if(self.status === 'pending'){
+        self.status = 'fullfilled';
+        self.value = value;
+        self.onResolvedCallbacks.forEach(fun => fun(self.value));
+      }
     }
-
+  
     function reject(reason){
-        if(self.status === 'pending'){
-            self.value = reason;
-            self.status = 'rejected';
-            self.onRejecteCallback.forEach(fn => fn(self.reason));
-        }
+      if(self.status === 'pending'){
+        self.status = 'rejected';
+        self.reason = reason;
+        self.onRejectedCallbacks.forEach(fun => fun(self.reason)); 
+      }
     }
-
-    try {
-        fn(resolve, reject);
+  
+    try{
+      fn(resolve, reject);
     }catch(e){
-        reject(e);
+      reject(e);
     }
-}
-myPromise.prototype.then = function(onFullfilled, onRejected){
+  }
+  myPromise.prototype.then = function(onFullfilled, onRejected){
     let self = this;
     switch(self.status){
-        case 'fulfilled': 
-            onFullfilled(self.value); break;
-        case 'rejected': 
-            onRejected(self.reason); break;
-        case 'pending': 
-            self.onResolvedCallback.push(function(){
-                onFullfilled(self.value);
-            });
-            self.onRejecteCallback.push(function(){
-                onRejected(self.reason);
-            });
-            break;
+      case 'fullfilled':
+        onFullfilled(self.value); break; // 可支持同步任务
+      case 'rejected': 
+        onRejected(self.reason); break;
+      case 'pending':
+        self.onResolvedCallbacks.push(function(){
+          onFullfilled(self.value);
+        });
+        self.onRejectedCallbacks.push(function(){
+          onRejected(self.reason);
+        });
+        break;
     }
-}
-var p = new myPromise(function(resolve, reject){
-    setTimeout(function(){
-        resolve(100);
-    }, 1000);
-});
-p.then(function(val){
-    console.log('myPromise resolve',val);
-}, function(r){
-    console.log('reject',r)
-})
-
-
-// 实现promise all
-Promise.all = function (list){
-	return new Promise((resolve, reject) => {
-		let resultList = [];
-		let counter = 0;
-		list.forEach((item, index) => {
-			item.then(res => {
-				resultList[index] = res;
-				if(++counter === list.length){
-					resolve(resultList);
-				}
-			}, rej => {
-				reject({rej: rej, index: index});
-			})
-		});
-	});
-}
+    return this;// 可实现链式操作,但是这个链式操作返回的都是同一个函数执行结果，并不能真正实现链式调用
+  };
+  // var p = new myPromise(function(resolve, reject){
+  //   resolve(1); // 同步任务执行
+  //   // setTimeout(() => {
+  //   //   resolve(1); // 异步任务执行
+  //   // }, 100)
+  //   // setTimeout(() => {
+  //   //   reject(2);
+  //   // }, 1000)
+  // });
+  // p.then(function(val){
+  //   console.log('succ resolve',val);
+  // }, function(err){
+  //   console.log('oops', err);
+  // }).then(res => {
+  //   console.log('第二个then',res)
+  // });
+  
+  myPromise.all = function(list){
+    return new myPromise((resolve, reject)=>{
+      let result = [];
+      let counter = 0;
+      list.forEach((fn, index) => {
+        fn.then(res => {
+          result[index] = res;
+          counter ++;
+          if(counter === list.length){
+            resolve(result);
+          }
+        }, (err) => {
+          reject({err, index})
+        });
+      });
+    });
+  }
+  myPromise.all([new myPromise((resolve, reject)=>{
+    setTimeout(() => {
+      resolve(1);
+    }, 100);
+  }),
+  new myPromise((resolve, reject)=>{
+    setTimeout(() => {
+      resolve(2);
+    }, 100);
+  }),
+  new myPromise((resolve, reject)=>{
+    setTimeout(() => {
+      resolve(3);
+    }, 100);
+  })]).then(res => {
+    console.log('all',res)
+  })
