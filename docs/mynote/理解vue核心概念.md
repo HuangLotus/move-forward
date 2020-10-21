@@ -23,14 +23,13 @@ Vue 2中很多核心的概念，作为前端工程师，需要知其然，知其
 
 Vue选择重写数组方法，即劫持数组方法，重写原型链上的方法，不是用的defineProperty，那样性能太差。
 
-
 在vue中修改数组的长度是无法监控到的，需要通过以上7种变异方法才能监控到。
+- vue如何重写的数组，是在Js原型上吗？
+- vue是如何做的数组拦截
 
 ### 3.vue中模板编译原理
 
 将template转换成render函数，生成虚拟节点，经过处理，最后再生成dom。
-
-
 
 这个过程主要用的vue-template-compiler,vue-loader处理的，用vue-template-compiler生成ast和render，render方法一执行就重新生成了dom(codeGen)
 

@@ -22,4 +22,6 @@ Array.prototype.flattern2 = function (){
   return inner(arr);
 };
 [1,3,[4,6],[7,8],[10,[12,34]],90].flattern2(); // [ 1, 3, 4, 6, 7, 8, 10, 12, 34, 90 ]
-  
+
+// 用正则
+JSON.parse('['+JSON.stringify(arr).replace(/\[|\]/gi, '')+']');

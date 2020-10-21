@@ -4,7 +4,6 @@ class TaskManager {
         this.count = 0;
         this.taskList = [];
     }
-    
     addTask(p) {
         let result = null;
         let promise = new Promise((resolve, reject) => {
@@ -13,10 +12,11 @@ class TaskManager {
     
         if (this.count < 3){
             this.count ++;
-            p.then(data => {
+            p().then(data => {
+                console.log('then',data)
                 this.count --;
                 result(data);
-                console.log('iner',data);
+                console.log('inner',data,this.count, this.taskList)
                 this.execTask();
             });
         } else {
@@ -26,37 +26,47 @@ class TaskManager {
     }
     execTask() {
         if (this.taskList.length > 0){
+            // console.log('execTask',this.taskList,this.count)
             this.addTask(this.taskList.shift());
         }
     }
 }
 
 let tm = new TaskManager();
-tm.addTask(new Promise((resolve, reject) => {
+tm.addTask(() => new Promise((resolve, reject) => {
     setTimeout(function(){
         resolve(1);
     }, 100);
 })).then(data => {
-    console.log('result2',data);
+    console.log('result1',data);
 });
-tm.addTask(new Promise((resolve, reject) => {
+tm.addTask(() => new Promise((resolve, reject) => {
     setTimeout(function(){
         resolve(2);
     }, 100);
 })).then(data => {
     console.log('result2',data);
 });
-tm.addTask(new Promise((resolve, reject) => {
+tm.addTask(() => new Promise((resolve, reject) => {
     setTimeout(function(){
         resolve(3);
     }, 100);
 })).then(data => {
-    console.log('result2',data);
+    console.log('result3',data);
 });
-tm.addTask(new Promise((resolve, reject) => {
+tm.addTask(() => new Promise((resolve, reject) => {
     setTimeout(function(){
         resolve(4);
-    }, 100);
+    }, 10);
 })).then(data => {
-    console.log('result2',data);
+    console.log('result4',data);
 });
+
+tm.addTask(() => new Promise((resolve, reject) => {
+    setTimeout(function(){
+        resolve(5);
+    }, 120);
+})).then(data => {
+    console.log('result5',data);
+});
+// 存在问题，4,5没执行

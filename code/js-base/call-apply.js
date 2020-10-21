@@ -24,4 +24,4 @@ function bar(name, age){
 }
 bar.myCall(foo, 'black', '18');
 // bar.myApply(foo, ['red', '19']);
-console.log('a',foo, bar);
+console.log('a',foo);

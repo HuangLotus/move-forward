@@ -45,6 +45,10 @@ taskManager([new Promise((resolve, reject) => {
     setTimeout(function(){
         resolve(4);
     }, 100);
+}), new Promise((resolve, reject) => {
+    setTimeout(function(){
+        resolve(5);
+    }, 100);
 })]).then(res => {
     console.log('p', res)
 });
