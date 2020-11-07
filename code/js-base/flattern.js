@@ -25,3 +25,21 @@ Array.prototype.flattern2 = function (){
 
 // 用正则
 JSON.parse('['+JSON.stringify(arr).replace(/\[|\]/gi, '')+']');
+
+// [1,[[2]],{a:[1,23,4]},[[3,4]]]
+// 拍平嵌套数组，不使用flat方法，不使用递归
+
+// let arr = [1,[[2]],{a:[1,3]},[[3,4]]];
+// JSON.parse('['+JSON.stringify(arr).replace(/(\[\])?{(^\[|\])?}/gi,(m,p=>{
+  
+// })+']');
+
+// 用flat
+let arr = [1, [2, [3, [4, 5]]], 6];
+let arr_flat = arr.flat(Infinity);
+
+// 用toString
+let arr = [1, [2, [3, [4, 5]]], 6];
+let arr_flat = arr.toString().split(',').map((val)=>{
+    return parseInt(val)
+});

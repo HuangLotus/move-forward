@@ -11,6 +11,7 @@ function debounce(func, time){
     };
 }
 // 节流就是设置一个时间，这个时间之内事件处理器只会执行一次
+// 节流性能比防抖更优
 function throttle(func, time){
     let lock = false;
     return function(...args){

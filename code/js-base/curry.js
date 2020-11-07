@@ -5,6 +5,7 @@
 const curry = ( fn, arr = []) => {
     return (...args) => { 
         //判断参数总数是否和fn参数个数相等
+        console.log('re',fn.length)
         if([...arr, ...args].length === fn.length){
             return fn(...arr, ...args) //拓展参数，调用fn
         } else{
@@ -12,13 +13,24 @@ const curry = ( fn, arr = []) => {
         }
     }
 }
+
 // 精简版：
 const curry2 = (fn, arr = []) => (...args) => (a => a.length === fn.length ? fn(...a) : curry2(fn, a))([...arr,...args]);  
 
-function add(a,b,c){
+function add(a,b,c){  
     return a+b+c;
 }
 var multi = curry(add);
 console.log(multi(2)(3)(4));
 console.log(multi(2,3,4));
 console.log(multi(2,3)(4));
+
+// 最简单的柯里化
+// var add = function (x) {  //柯里化
+//     return function (y) {
+//         return x + y;
+//     }
+// }
+// console.log(add(2) (6)); 
+// var add1 = add(200);
+// console.log(add1(2)); 

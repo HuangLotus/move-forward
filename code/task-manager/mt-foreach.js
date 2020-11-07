@@ -3,6 +3,13 @@
 // 要求：使用promise 实现
 // 考察promise和串行执行
 
+// reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。
+// reducer 函数接收4个参数:
+  // Accumulator (acc) (累计器)
+  // Current Value (cur) (当前值)
+  // Current Index (idx) (当前索引)
+  // Source Array (src) (源数组)
+// 您的 reducer 函数的返回值分配给累计器，该返回值在数组的每个迭代中被记住，并最后成为最终的单个结果值。
 function forEach(arr, cb){
   return arr.reduce((acc, item) => {
     return acc.then((data) => item(cb(data)));

@@ -32,6 +32,7 @@ module.exports = {
                     '/mynote/对webpack热更新的理解',
                     '/mynote/懒加载是如何实现的',
                     '/mynote/对js模块的深入理解',
+                    '/mynote/前端模块化如何实现换肤',
                     '/summary/如何实现一个简版的webpack'
                 ],
                 collapsable: false, 
