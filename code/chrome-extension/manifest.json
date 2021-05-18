@@ -1,0 +1,39 @@
+{
+  "name": "猿辅导内网虚环境切换工具",
+  "description": "适用于浏览器端H5页面,内网环境下C端&B端页面均可用（本地3000端口也支持虚环境代理）",
+  "version": "1.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "popup.html?isExtension=1",
+    "default_title": "猿辅导内网虚环境切换工具"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "web_accessible_resources": ["xmlHttp.js"],
+  "permissions": ["http://*/", "https://*/", "storage", "background", "activeTab", "tabs", "webRequest", "webRequestBlocking", "contextMenus"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "run_at": "document_start",
+      "js": ["content-scripts.js"]
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "icons": {
+    "16": "/images/get_started16.png",
+    "32": "/images/get_started32.png",
+    "48": "/images/get_started48.png",
+    "128": "/images/get_started128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "Opens popup.html"
+    }
+  }
+}
