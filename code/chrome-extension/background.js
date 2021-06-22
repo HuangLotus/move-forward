@@ -4,7 +4,6 @@ const item = localStorage.getItem(storageKey)
 let LS = item && JSON.parse(item)
 chrome.storage.local.set({'ce_venv_tags': LS.tags})
 
-// 为啥监听不到
 chrome.storage.onChanged.addListener(function(changes, namespace) {
   console.log('changes',changes)
   for (key in changes) {

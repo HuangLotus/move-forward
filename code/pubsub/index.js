@@ -46,3 +46,48 @@ salesOffices.listen('squareMeter100', price => {
 })
 salesOffices.trigger('squareMeter88', 2000000)
 salesOffices.trigger('squareMeter100', 2500000)
+
+
+
+
+class PubSub {
+  constructor () {
+    this.eventList = {}
+  }
+
+  sub (eventName, cb) {
+    if (typeof this.eventList[eventName] === 'undefined') {
+      this.eventList[eventName] = []
+    }
+    this.eventList[eventName].push(cb)
+  }
+
+  unSub(eventName, cb) { 
+    if (this.eventList[eventName]) {
+      let currEvt = this.eventList[eventName]
+      if (cb) {
+        for(let i = 0, len = currEvt.length; i<len; i++){
+          if (currEvt[i] === cb) {
+            currEvt.splice(i, 1)
+            break;
+          }
+        }
+      } else {
+        this.eventList[eventName] = []
+      }
+    }
+  }
+
+  notify (eventName, ...args){
+    if (!this.eventList[eventName]) {
+      return 
+    }
+    this.eventList[eventName].forEach(fn => {
+      fn(...args)
+    })
+  }
+}
+let instance = new PubSub()
+instance.sub('eventName', () => {})
+instance.unSub('eventName', () => {})
+instance.notify('eventName', 1)

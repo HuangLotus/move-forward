@@ -35,18 +35,27 @@ class LinkedList {
       preNode.next = preNode.next.next;
     }
   }
+  // 第一种方法：单链表只有头指针，所以只能从头部开始寻找，先遍历一遍链表，确定链表中节点的个数k。
+  // 然后从前往后第k-n+1个节点就是倒数第n个节点。一共遍历2次链表
+  // 第二种方法：只遍历一次链表。设置2个指针，当第一个指针从表头向前走到第n-1个节点时，第二个指针开始从表头出发。
+  // 当第一个指针走到尾节点时，第二个指针的位置即为倒数第n个节点
+  // 双链表：这道题用双指针来实现时。先用first指针前进n，然后让second从head开始和first一起前进，直到first到了末尾，此时second的下一个节点就是要删除的节点。（另外，若first一开始前进n就已经不在链表中了，说明要删除的节点正是head节点，那么直接返回head的下一个节点接口。）
   findDaoShuNNode(num){
     var currNode = this.head;
     var firstIndex = 0;
-    var targetNode = null;
+    let secondCusor = 0;
     while(currNode!=null){
-      if(firstIndex >= num && currNode.next !=null){
-        targetNode = currNode;
+      if(firstIndex === num - 1 && currNode.next != null){
+        secondCusor = 0 // 开始查找
+      }
+      if (firstIndex < num - 1 && currNode.next ===null) {
+        currNode = this.head
       }
       currNode = currNode.next;
       firstIndex ++;
+      secondCusor ++;
     }
-    return targetNode.elem;
+    return currNode.elem;
   }
   display(){
     var currNode = this.head;

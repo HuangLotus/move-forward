@@ -7,7 +7,6 @@ console.log(parseFloat(num).toLocaleString());
 let str = '15763246546547.35353';
 function strSplit(str){
   let arr = str.split('.');
-
 }
 strSplit(str);
 

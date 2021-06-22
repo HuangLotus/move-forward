@@ -15,7 +15,8 @@ Function.prototype.myBind = function(thisArg){
     };
     mybind.prototype = this.prototype;
     return mybind;
-};
+}
+
 function foo(name, other) {
     this.name = name;
     this.other = other;
@@ -26,7 +27,7 @@ var obj = {
 
 var bar = foo.myBind(obj);
 bar('Jack', 'ooo');
-// console.log(obj.name,obj.other,obj);  // Jack
+console.log(obj.name,obj.other,obj);  // Jack
 
 var alice = new bar('Alice');
 console.log(obj.name);  // Jack
