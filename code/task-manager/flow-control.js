@@ -2,7 +2,7 @@
 // 如果中途出错，后面的任务则不会被执行，并返回当前执行结果
 // 串行任务
 
-function waterfall(tasks,callback){
+function waterfall(tasks, callback){
   let next = function(data){
     if(tasks.length === 0){
       callback(null, data);

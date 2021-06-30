@@ -13,10 +13,10 @@ class TaskManager {
         if (this.count < 3){
             this.count ++;
             p().then(data => {
-                console.log('then',data)
+                // console.log('then',data)
                 this.count --;
                 result(data);
-                console.log('inner',data,this.count, this.taskList)
+                // console.log('inner',data,this.count, this.taskList)
                 this.execTask();
             });
         } else {

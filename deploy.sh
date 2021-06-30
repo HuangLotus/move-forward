@@ -31,5 +31,5 @@ pwd
 # 删除编译产物
 rm -rf docs/.vuepress/dist
 git add .
-git ci -am "删除编译产物，并提交变更到master"
-git ps origin master
+git commit -am "删除编译产物，并提交变更到master"
+git push origin master
