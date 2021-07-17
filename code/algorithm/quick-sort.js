@@ -20,3 +20,23 @@ function quickSort(arr) {
 
 let arr = [2, 4, 12, 9, 22, 10, 18, 6];
 quickSort(arr);
+
+function quickSort(array){
+    if(array.length < 2) return array;
+    let leftArray = [];
+    let rightArray = [];
+    let base = array[0];
+    array.forEach((element) => {
+        if(element > base){
+            leftArray.push(element);
+        } else if(element < base){
+            rightArray.push(element);
+        }
+    });
+    return quickSort(leftArray).concat(base,quickSort(rightArray));
+  };
+  
+  let test2 = [5,3,2,1,4];
+  let res = quickSort(test2);
+  
+  console.log(res);
