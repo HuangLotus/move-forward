@@ -1,5 +1,4 @@
 // 输入两个链表，找出它们的第一个公共结点。
-
 function FindFirstCommonNode(pHead1, pHead2) {
   if (!pHead1 || !pHead2) { return null; }
   // 获取链表长度

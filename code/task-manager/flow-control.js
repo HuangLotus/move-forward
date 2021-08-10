@@ -6,7 +6,7 @@ function waterfall(tasks, callback){
   let next = function(data){
     if(tasks.length === 0){
       callback(null, data);
-      return ;
+      return;
     }
     let fn = tasks.shift();
     fn(data,next)

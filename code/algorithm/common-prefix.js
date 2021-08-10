@@ -26,4 +26,4 @@ function commonPrefix (arr) {
   console.log(result) // ['', '', 'a', 'b', 'c', '', 'd']
   return result
 }
-// console.log(commonPrefix(['abcaaa', 'abcddd', 'abcadad']))
+console.log(commonPrefix(['abcaaa', 'abcddd', 'abcadad']))

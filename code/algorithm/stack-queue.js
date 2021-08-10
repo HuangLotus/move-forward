@@ -8,17 +8,18 @@
 // 为了满足队列的 FIFO 的特性，我们需要用到两个栈，用它们其中一个来反转元素的入队顺序，用另一个来存储元素的最终顺序。
 class Queue {
   constructor () {
-    this.s1 = new Stack()
-    this.s2 = new Stack()
+    this.s1 = []
+    this.s2 = []
   }
   // 后端入队
   push (item) {
     this.s1.push(item)
   }
   // 前端出队
+  // 关键点是在s2还没倒完的时候，不要继续往里面放东西。
   shift () {
-    if (this.s2.isEmpty()) {
-      while (!this.s1.isEmpty()) {
+    if (this.s2.length === 0) {
+      while (this.s1.length > 0) {
         this.s2.push(this.s1.pop())
       }
     }
@@ -26,7 +27,7 @@ class Queue {
   }
 
   empty() {
-    this.s2.isEmpty() && this.s1.isEmpty()
+    this.s2.length === 0 && this.s1.length === 0
   }
 }
 
@@ -43,3 +44,4 @@ class Stack {
 
   }
 }
+

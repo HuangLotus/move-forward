@@ -39,6 +39,25 @@ module.exports = {
                 initialOpenGroupIndex: 1 
             },
             {
+                title: '性能优化',
+                path: '/performance', 
+                children: [
+                    '/performance/图片性能优化',
+                    '/performance/H5页面性能数据分析',
+                ],
+                collapsable: false, 
+                initialOpenGroupIndex: 1 
+            },
+            {
+                title: '前端工程化',
+                path: '/performance', 
+                children: [
+                    '/performance/图片性能优化',
+                ],
+                collapsable: false, 
+                initialOpenGroupIndex: 1 
+            },
+            {
                 title: '踩坑经验',   // 必要的
                 path: '/summary',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
                 collapsable: false, // 可选的, 默认值是 true,
