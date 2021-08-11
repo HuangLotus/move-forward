@@ -1,5 +1,5 @@
 module.exports = {
-    title: '风若能够',
+    title: '风若',
     description: '工作笔记',
     base: '/move-forward/',
     markdown: {
