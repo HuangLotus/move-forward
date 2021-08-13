@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+# 取消git代理
+git config --global --unset http.https://github.com.proxy
+git config --global --unset https.https://github.com.proxy
 
 # 确保脚本抛出遇到的错误
 set -e
