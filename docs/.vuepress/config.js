@@ -41,7 +41,6 @@ module.exports = {
                 title: '性能优化',
                 path: '/performance', 
                 children: [
-                    '/mynote/chrome扩展开发总结',
                     '/performance/性能数据指标理解',
                     '/performance/图片性能优化'
                 ],
