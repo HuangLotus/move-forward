@@ -32,4 +32,5 @@ pwd
 rm -rf docs/.vuepress/dist
 git add .
 git commit -am "删除编译产物，并提交变更到master"
+git push
 git push origin master

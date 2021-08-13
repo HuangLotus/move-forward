@@ -32,8 +32,7 @@ module.exports = {
                     '/mynote/对webpack热更新的理解',
                     '/mynote/懒加载是如何实现的',
                     '/mynote/对js模块的深入理解',
-                    '/mynote/前端模块化如何实现换肤',
-                    '/summary/如何实现一个简版的webpack'
+                    '/mynote/前端模块化如何实现换肤'
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 
@@ -42,31 +41,33 @@ module.exports = {
                 title: '性能优化',
                 path: '/performance', 
                 children: [
-                    '/performance/图片性能优化',
-                    '/performance/H5页面性能数据分析',
+                    '/mynote/chrome扩展开发总结',
+                    '/performance/性能数据指标理解',
+                    '/performance/图片性能优化'
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 
             },
             {
-                title: '前端工程化',
-                path: '/performance', 
+                title: '工具开发',
+                path: '/tools', 
                 children: [
-                    '/performance/图片性能优化',
+                    '/mynote/chrome扩展开发总结',
+                    '/summary/如何实现一个简版的webpack',
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 
             },
-            {
-                title: '踩坑经验',   // 必要的
-                path: '/summary',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-                collapsable: false, // 可选的, 默认值是 true,
-                // sidebarDepth: 1,    // 可选的, 默认值是 1
-                children: [
-                    '/summary/那些不清楚的知识点梳理'
-                ],
-                initialOpenGroupIndex: 1
-            },
+            // {
+            //     title: '踩坑经验',   // 必要的
+            //     path: '/summary',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            //     collapsable: false, // 可选的, 默认值是 true,
+            //     // sidebarDepth: 1,    // 可选的, 默认值是 1
+            //     children: [
+            //         '/summary/那些不清楚的知识点梳理'
+            //     ],
+            //     initialOpenGroupIndex: 1
+            // },
             {
                 title: '平台架构',
                 path: '/platform',
