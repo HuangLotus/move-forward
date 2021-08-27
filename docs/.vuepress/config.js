@@ -32,7 +32,8 @@ module.exports = {
                     '/mynote/对webpack热更新的理解',
                     '/mynote/懒加载是如何实现的',
                     '/mynote/对js模块的深入理解',
-                    '/mynote/前端模块化如何实现换肤'
+                    '/mynote/前端模块化如何实现换肤',
+                    '/mynote/如何解决定时器时间不准的问题'
                 ],
                 collapsable: false, 
                 initialOpenGroupIndex: 1 
