@@ -3,7 +3,7 @@ window.addEventListener("message", function(event) {
   if(event.data.ce_venv_tags) {
     tags = event.data.ce_venv_tags
     CE_VENV_TAGS = JSON.parse(tags)
-    console.log('收到来自content-scripts的VENV消息',CE_VENV_TAGS);
+    // console.log('收到来自content-scripts的VENV消息', CE_VENV_TAGS, event);
   }
 }, false);
 
@@ -12,10 +12,12 @@ const EXCLUDE_CONFIG_URL_LIST = ['/leo-venv-tools/api']
 const REPLACE_DOMAIN_REGEX = /\/\/([^\/]*)\/\.*/
 
 function handleInterceptorsRequestByTag(url, selectedVirtualEnvList) {
+  // console.log('拦截判断 start', selectedVirtualEnvList)
   const isIgnore =
     EXCLUDE_CONFIG_URL_LIST.length && EXCLUDE_CONFIG_URL_LIST.some(item => url.indexOf(item) !== -1)
   let matched = false
   if (isIgnore || !selectedVirtualEnvList || selectedVirtualEnvList.length === 0) {
+    console.log('拦截异常提前返回')
     return {
       modifiedUrl: url,
       matched
@@ -23,6 +25,7 @@ function handleInterceptorsRequestByTag(url, selectedVirtualEnvList) {
   }
   let modifiedUrl = url
   selectedVirtualEnvList = selectedVirtualEnvList.filter(item => !item.isChildren)
+  // console.log('selectedVirtualEnvList', url, selectedVirtualEnvList)
   selectedVirtualEnvList.forEach(virtualItem => {
     virtualItem.baseHosts.forEach(item => {
       if (!matched && url.indexOf(virtualItem.path) > -1){
@@ -59,7 +62,7 @@ function interceptUrl(url, type){
     modifiedUrl: url
   }
   CE_VENV_TAGS && CE_VENV_TAGS.forEach(item => {
-    if (!resObj.matched){
+    if (!resObj.matched && item.selectVenvHostList && item.selectVenvHostList.length > 0){
       resObj = handleInterceptorsRequestByTag(url, item.selectVenvHostList)
     }
   })
@@ -77,7 +80,6 @@ function myFetch(...args){
   return window.originFetch.call(this, ...args)
 }
 window.fetch = myFetch
-
 
 // function sendBypass(original_function) {
 //   return function(data) {

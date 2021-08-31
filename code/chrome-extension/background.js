@@ -2,10 +2,12 @@ console.log('in background.js')
 const storageKey = location.origin + '/popup.html'
 const item = localStorage.getItem(storageKey)
 let LS = item && JSON.parse(item)
-chrome.storage.local.set({'ce_venv_tags': LS.tags})
+if (LS && LS.tags) {
+  chrome.storage.local.set({'ce_venv_tags': LS.tags})
+}
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-  console.log('changes',changes)
+  // console.log('changes', changes, new Date())
   for (key in changes) {
   var storageChange = changes[key];
 
@@ -19,6 +21,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         tabs[0].id,
         {
           text: 'redirectSuccess',
+          from: 'background.js watch storage change',
           localStorageTags: storageChange.newValue
         },
         function(response) {
@@ -48,7 +51,7 @@ function handleInterceptorsRequestByTag(details, selectedVirtualEnvList) {
       if (details.url.indexOf(virtualItem.path) > -1){
         if(details.url.indexOf('local')>-1 || details.url.indexOf(item.baseHost) > -1){
           // details.url = details.url.replace(REPLACE_DOMAIN_REGEX, `//${virtualItem.host}/`)
-          console.log('匹配上啦', virtualItem.host, details.url)
+          // console.log('匹配上啦', virtualItem.host, details.url)
           matched = true
         }
       }
@@ -63,8 +66,6 @@ chrome.webRequest.onBeforeRequest.addListener(
     const storageKey = location.origin + '/popup.html'
     const item = localStorage.getItem(storageKey)
     let LS = item && JSON.parse(item)
-    // console.log('1 onBeforeRequest 从LS中获取数据', details.method, srcUrl, details, details.requestBody)
-    // 没有数据，直接跳过
     if (!LS || (LS && (!LS.tags || LS.tags.length === 0))) {
       return { cancel: false }
     }
@@ -74,11 +75,7 @@ chrome.webRequest.onBeforeRequest.addListener(
         matched = true
       }
     })
-    // console.log('matched', matched)
-    // 域名转发
     if (matched) {
-    // if (srcUrl !== details.url) {
-      // console.log('转发的域名', srcUrl, '=>', details.url)
       chrome.tabs.query(
         {
           active: true,
@@ -89,6 +86,7 @@ chrome.webRequest.onBeforeRequest.addListener(
             tabs[0].id,
             {
               text: 'redirectSuccess',
+              from: 'background.js',
               srcUrl,
               redirectUrl: details.url,
               localStorageTags: LS.tags
@@ -106,15 +104,3 @@ chrome.webRequest.onBeforeRequest.addListener(
   {urls: ["<all_urls>"]},
   ["blocking", "requestBody"]
 );
-
-// chrome.webRequest.onResponseStarted.addListener(
-//   function(details) {
-//     console.log('2【onBeforeSendHeaders】', details.url, details.method, details.requestHeaders)
-//     return {requestHeaders: details.requestHeaders};
-//   },
-//   {urls: ["<all_urls>"]},
-//   ["blocking", "requestHeaders"]);
-
-// chrome.webRequest.onErrorOccurred.addListener(function(details) {
-//   console.log('0 onErrorOccurred', details,url, details.method, details)
-// })
