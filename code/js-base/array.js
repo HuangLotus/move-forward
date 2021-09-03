@@ -52,6 +52,11 @@ function combine(arr1, arr2){
           result.push(arr2.shift());
       }
   }
+  if (arr1.length) {
+    result = result.concat(arr1)
+  } else {
+    result = result.concat(arr2)
+  }
   return result;
 }
 console.log('combile',combine([1,3,5,6,7,10,700], [2,4,5,8,9,11,459]));

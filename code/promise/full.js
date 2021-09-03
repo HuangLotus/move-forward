@@ -77,7 +77,6 @@ function resolvePromise(promise2, x, resolve, reject){
         resolve(x);
     }
 }
-
 myPromise.prototype.then = function(onFullfilled, onRejected){
     let self = this;
     let promise2 = new myPromise((resolve, reject) => {

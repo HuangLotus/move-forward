@@ -1,0 +1,24 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/index.js"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.10.3",
+    "@babel/traverse": "^7.10.3"
+  },
+  "dependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.10.3"
+  },
+  "keywords": [
+    "webpack",
+    "simple"
+  ],
+  "author": "hfr",
+  "license": "ISC"
+}

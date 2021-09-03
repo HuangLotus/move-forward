@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+# 取消git代理
+git config --global --unset http.https://github.com.proxy
+git config --global --unset https.https://github.com.proxy
 
 # 确保脚本抛出遇到的错误
 set -e
@@ -31,5 +34,6 @@ pwd
 # 删除编译产物
 rm -rf docs/.vuepress/dist
 git add .
-git ci -am "删除编译产物，并提交变更到master"
-git ps origin master
+git commit -am "删除编译产物，并提交变更到master"
+git pull origin master
+git push origin master

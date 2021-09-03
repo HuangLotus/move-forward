@@ -1,0 +1,23 @@
+{
+  "visits": [
+    {
+      "ip": ""
+    },
+    {
+      "ip": ""
+    },
+    {
+      "ip": "",
+      "user": "a",
+      "page": "1",
+      "action": "click"
+    },
+    {
+      "ip": "",
+      "user": "a",
+      "page": "1",
+      "action": "click"
+    }
+  ],
+  "count": 4
+}

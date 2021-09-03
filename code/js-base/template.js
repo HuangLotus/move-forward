@@ -18,7 +18,10 @@ function fun(str, obj) {
 // console.log(fun(str2,obj));
 
 function render(template, context) {
-    return template.replace(/\{\{(.*?)\}\}/g, (match, key) => context[key]);
+    return template.replace(/\{\{(.*?)\}\}/g, (match, key) =>{
+        console.log('in', match, key)
+        return context[key]
+    });
 }
 const template = "{{name}}很厉害，才{{age}}岁";
 const context = { name: "jawil", age: "15" };

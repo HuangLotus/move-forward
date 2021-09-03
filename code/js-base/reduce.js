@@ -45,3 +45,17 @@ var m = [1,2,3,4,54].myMap(function (v, i) {
     return v + v
 });
 console.log(m)
+
+// 实现reduce方法
+Array.prototype.myReduce = function(fn, result) {
+    let arr = this
+    let res = result
+    for (let i = 0, len = arr.length; i<len; i++) {
+        res = fn(res, arr[i], i)
+    }
+    return res
+}
+[1,4,5,6].myReduce((acc, item) => {
+    acc.push(item * 2)
+    return acc
+}, [])

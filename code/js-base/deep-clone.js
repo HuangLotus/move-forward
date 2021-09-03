@@ -26,3 +26,4 @@ console.log('克隆前',ctest);
 test.c.e = 10;
 test.d[0] = 200;
 console.log('克隆后',test);
+// 上面的代码存在一个问题，就是循环引用的问题。
