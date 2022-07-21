@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数据双向绑定简单版</title>
+	</head>
+	<body>
+		<div id="showInput"></div>
+		<input type="text" id="userInput"/>
+		<script>
+			data ={
+				inputVal: ''
+			};
+			const divElem = document.getElementById('showInput');
+			const inputElem = document.getElementById('userInput');
+			let temp =''
+			Object.defineProperty(data, 'inputVal', {
+				configurable: true,
+				enumerable: true,
+				get: function() {
+					return temp;
+				},
+				set: function(newval) {
+					temp ='stt:'+ newval;
+				}
+			})
+			inputElem.onkeyup= (e) => {
+				data.inputVal = e.target.value
+				divElem.innerHTML = data.inputVal;
+			}
+		</script>
+	</body>
+</html>

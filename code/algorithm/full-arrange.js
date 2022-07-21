@@ -18,6 +18,7 @@ class Permutation {
     }
     for(let i = index; i < this.arr.length; i++) {
       [this.arr[index], this.arr[i]] = [this.arr[i], this.arr[index]];  // 与下标为i的元素交换位置
+      console.log('hfr arr', index, this.arr)
       this.run(index + 1);  // 剩下元素全排列
       [this.arr[index], this.arr[i]] = [this.arr[i], this.arr[index]]; // 复原数组
     }
@@ -27,3 +28,14 @@ class Permutation {
 let p = new Permutation([1,2,3]);
 console.log(p.result);
 console.log(p.len);
+
+// 输入: [1,2,3]
+// 输出:
+// [
+//   [1,2,3],
+//   [1,3,2],
+//   [2,1,3],
+//   [2,3,1],
+//   [3,1,2],
+//   [3,2,1]
+// ]

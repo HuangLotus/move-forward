@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数据双向绑定简单版</title>
+	</head>
+<body>
+    <h1>vue mvvm</h1>
+    <div id="app">
+        <h2 v-text="title"></h2>
+        <p v-text="name"></p>
+        <input v-model="name">
+    </div>
+    <script type="text/javascript">
+        function Vue(opt) {
+            this.data = opt.data || {}
+            this.$el = document.querySelector(opt.el) || document.body
+            let textDom = this.$el.querySelectorAll('[v-text]')
+            let modelDom = this.$el.querySelectorAll('[v-model]')
+            let self = this
+
+            function observe(data) {
+                if (!data || typeof data !== 'object') {
+                    return;
+                }
+                Object.keys(data).forEach(key => {
+                    defineReactive(data, key, data[key])
+                })
+            }
+
+            function defineReactive(data, key, val) {
+                observe(val) //递归
+                Object.defineProperty(data, key, {
+                    enumerable: true, //枚举
+                    configurable: false, 
+                    get: function () {
+                        return val
+                    },
+                    set: function (newVal) {
+                        if (val === newVal) {
+                            return
+                        }
+                        val = newVal
+                        modelToView()
+                    }
+                })
+            }
+
+            function modelToView() {
+                textDom.forEach(node => {
+                    // 数据 -> 视图
+                    node.innerText = self.data[node.getAttribute('v-text')]
+                })
+            }
+
+            function watch() {
+                modelDom.forEach(node => {
+                    node.addEventListener('keyup', function () {
+                        // 改变data -> 触发数据劫持 -> 重新赋值 -> 改变视图
+                        self.data[node.getAttribute('v-model')] = node.value
+                    })
+                })
+                // setTimeout(()=> {
+                //     self.data['title'] = 'aaa'
+                // }, 5000)
+            }
+
+            observe(this.data)
+            modelToView()
+            watch()
+        }
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                title: 'Hello',
+                name: 'word',
+            }
+        })
+    </script>
+</body>
+</html>
