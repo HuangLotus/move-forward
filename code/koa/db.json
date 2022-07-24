@@ -17,7 +17,16 @@
       "user": "a",
       "page": "1",
       "action": "click"
+    },
+    {
+      "ip": ""
+    },
+    {
+      "ip": "",
+      "user": "lotus",
+      "page": "1",
+      "action": "test"
     }
   ],
-  "count": 4
+  "count": 6
 }
