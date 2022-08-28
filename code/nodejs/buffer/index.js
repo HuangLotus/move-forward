@@ -25,8 +25,7 @@ fs.readFile('../fs/better.png', (err, buffer) => {
 // // Hello 掘金
 // console.log(bufFromBuf.toString('utf8'))
 // console.log(bufFromBuf.toString('utf16le'))
-// // 效汬⁯軦醇
-
+ 
 // let bufForWrite = Buffer.alloc(32)
 // bufForWrite.write('Hello 掘金', 2, 4)
 // console.log(bufForWrite.toString())
