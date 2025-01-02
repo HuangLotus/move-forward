@@ -39,3 +39,7 @@ function fibonacci(num){
   return result;
 }
 console.log(fibonacci(6))
+
+
+
+//////just for practice
