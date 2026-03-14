@@ -1,51 +1,39 @@
-function multiNumSum (arr1, arr2) {
-  let carry = 0
-  let len1 = arr1.length
-  let len2 = arr2.length
-  let len = Math.max(len1,len2)
-  let tempAllLen = len1 * len2
-  let result = new Array(tempAllLen).fill(0)
-  let idx = tempAllLen - 1 
-  let count = 0
-  
-  for (let i = len1 - 1; i > 0; i--){
-    let tmpArr = []
-    for(let j = len2 - 1; j > 0; j--) {
-      let sum = arr1[i] * arr2[j] + carry
-      if (sum > 10) {
-        let temp = sum.toString().split('')
-        carry = parseInt(temp[0])
-        sum = parseInt(temp[1])
-      }
-      tmpArr.unshift(sum)
+/**
+ * 大数乘法 - 优化实现
+ * 输入: 两个数字数组，arr[0] 为最高位
+ * 例如: [1,2,3] 表示 123
+ */
+function multiNumSum(arr1, arr2) {
+  const len1 = arr1.length
+  const len2 = arr2.length
+  const resultLen = len1 + len2
+  const result = new Array(resultLen).fill(0)
+
+  // 标准竖式乘法: result[i+j+1] 累加 arr1[i] * arr2[j]
+  for (let i = len1 - 1; i >= 0; i--) {
+    for (let j = len2 - 1; j >= 0; j--) {
+      const pos = i + j + 1
+      result[pos] += arr1[i] * arr2[j]
     }
-    // 做加法
-    // 首次
-    idx -= count
-    if (i = len1 - 1) {
-      for(let k = tmpArr.length - 1; k> 0; k--){
-        result[idx] = tmpArr[k]
-        idx--
-      }
-    } else {
-      let sumCarry = 0
-      for(let k = tmpArr.length - 1; k > 0; k--){
-        let sum = result[idx] + tmpArr[k] + sumCarry
-        if (sum > 10) {
-          sumCarry = 1
-        } 
-        idx--
-        sum -= 10
-        result[idx] = sum
-      }
-    }
-    count++
-    // 复原
-    idx = tempAllLen - 1 
   }
-  while(result[0] === 0){
-    result = result.shift()
+
+  // 从低位向高位处理进位
+  for (let k = resultLen - 1; k > 0; k--) {
+    const carry = Math.floor(result[k] / 10)
+    result[k] %= 10
+    result[k - 1] += carry
   }
-  return result
+
+  // 移除前导零
+  let start = 0
+  while (start < resultLen - 1 && result[start] === 0) {
+    start++
+  }
+
+  return result.slice(start)
 }
-console.log(multiNumSum([1,2,3], [3,4,5]))
+
+// 测试
+console.log(multiNumSum([1, 2, 3], [3, 4, 5])) // 123 * 345 = 42435
+console.log(multiNumSum([9, 9, 9], [9, 9, 9])) // 999 * 999 = 998001
+console.log(multiNumSum([1, 0, 0], [1, 0, 0])) // 100 * 100 = 10000
